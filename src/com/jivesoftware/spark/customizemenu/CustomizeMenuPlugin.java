@@ -487,7 +487,7 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
 	        JPanel pane = new JPanel();
 	        pane.setBackground(Color.white);
 	        pane.setFont(new Font("Dialog", Font.PLAIN, 14));
-	        final String url ="pluginImage/customizemenu/resources/images";
+//	        final String url ="pluginImage/customizemenu/resources/images";
 	        Box box = Box.createVerticalBox();
 	        File file = new File(Spark.getSparkUserHome(), "/baosight/");
 	        JPanel p = new JPanel();
