@@ -1281,7 +1281,7 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
 					table.getSelectedRow();
 					String mailId = (String)table.getValueAt(table.getSelectedRow(),0);
 					System.out.println(table.getValueAt(table.getSelectedRow(),0));
-					 String path = "http://localhost:8080/efmpx/EFMPX/IM/IMMailReadContent.jsp";					    
+					 String path = "http://localhost:8080/contactsweb/mailList.xml";
 					 SimpleDateFormat CREDENTIAL_FORMAT = new SimpleDateFormat("yyyyMMddHHmm");
 				     Calendar now = Calendar.getInstance();
 				     String minuteStr = CREDENTIAL_FORMAT.format(now.getTime());
