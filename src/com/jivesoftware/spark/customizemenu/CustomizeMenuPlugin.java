@@ -51,7 +51,7 @@ import org.jivesoftware.spark.util.GraphicUtils;
 import org.jivesoftware.spark.util.ModelUtil;
 import org.jivesoftware.spark.util.log.Log;
 import org.jivesoftware.sparkimpl.plugin.alerts.SparkToaster;
-import org.lobobrowser.jweb.ext.JWebClientletSelector;
+//import org.lobobrowser.jweb.ext.JWebClientletSelector;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -91,6 +91,7 @@ import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -109,6 +110,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -123,6 +125,7 @@ import java.util.Set;
 import java.util.Vector;
 
 import com.jivesoftware.spark.customizemenu.*;
+import com.jivesoftware.spark.customizemenu.resource.CustomizeMenuRes;
 /**
  * Implements the Spark Plugin framework to display the different possibilities
  * using Spark.
@@ -317,7 +320,7 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
         	  String icon = config.getValue("icon");
         	  final String path = config.getValue("url");
         	  numlab[i] =  new JLabel("(0)");
-        	  addContactButton[i] = new RolloverButton(SparkRes.getImageIcon(icon));
+        	  addContactButton[i] = new RolloverButton(CustomizeMenuRes.getImageIcon(icon));
         	  numlab[i].setName(type);
         	  addContactButton[i].setToolTipText(configname);
         	  addContactButton[i].setText("0");
@@ -434,7 +437,7 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
         	  menu[i] = new JMenu("(0) ");
         	  menu[i].setToolTipText(configname);
         	  menu[i].setName(type);
-        	  menu[i].setIcon(SparkRes.getImageIcon(icon));
+        	  menu[i].setIcon(CustomizeMenuRes.getImageIcon(icon));
         	  functionBar.add(menu[i]);
         	 menu[i].addMouseListener(new MouseAdapter()
       		 {
@@ -517,7 +520,7 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
 		        	
 		        	
 		        	labels[i].setText(name);
-		        	labels[i].setIcon(SparkRes.getImageIcon(icon));
+		        	labels[i].setIcon(CustomizeMenuRes.getImageIcon(icon));
 		        	labels[i].setName(f.getAbsolutePath());
 		        	checkBoxs[i].setText("");
 		        	checkBoxs[i].setName(f.getAbsolutePath());
@@ -575,13 +578,13 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
 //						        File file = new File(url);
 //						        File[] files = file.listFiles();
 						        
-						        String imgs = SparkRes.getString("CUSTOM_IMG");
+						        String imgs = CustomizeMenuRes.getString("CUSTOM_IMG");
 						        String [] files = imgs.split("/");
 						       
 						        int index = -1;
 						        for (int i = 0; i < files.length; i++) {
 						            //ImageIcon tmpicon=new ImageIcon(url+"/"+files[i].getName());
-						            values.addElement(new ImagedComboBoxItem(files[i], SparkRes.getImageIcon(files[i]), i));
+						            values.addElement(new ImagedComboBoxItem(files[i], CustomizeMenuRes.getImageIcon(files[i]), i));
 						            if(iconImage!=null&&iconImage.equals(files[i]))
 						            	index = i;
 						        }
@@ -721,11 +724,11 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
 				        Vector values = new Vector();
 //				        File file = new File(url);
 //				        File[] files = file.listFiles();
-				        String imgs = SparkRes.getString("CUSTOM_IMG");
+				        String imgs = CustomizeMenuRes.getString("CUSTOM_IMG");
 				        String [] files = imgs.split("/");
 				        for (int i = 0; i < files.length; i++) {
 				           // ImageIcon icon=new ImageIcon(url+"/"+files[i].getName());
-				            values.addElement(new ImagedComboBoxItem(files[i], SparkRes.getImageIcon(files[i]), i));
+				            values.addElement(new ImagedComboBoxItem(files[i], CustomizeMenuRes.getImageIcon(files[i]), i));
 				        }
 				        final JImagedComboBox comboBox = new JImagedComboBox(values);
 				       
@@ -952,7 +955,8 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
 						 Runtime rt = Runtime.getRuntime();
 					     try
 					     {
-					      rt.exec("C:\\Program Files\\Internet Explorer\\iexplore.exe "+urlStr);
+					    	 Desktop.getDesktop().browse(new URI(urlStr));
+//					      rt.exec("C:\\Program Files\\Internet Explorer\\iexplore.exe "+urlStr);
 					     }
 			             catch(Exception ex){ex.printStackTrace();}
 					}
@@ -1281,7 +1285,7 @@ public class CustomizeMenuPlugin implements Plugin,PacketListener {
 					table.getSelectedRow();
 					String mailId = (String)table.getValueAt(table.getSelectedRow(),0);
 					System.out.println(table.getValueAt(table.getSelectedRow(),0));
-					 String path = "http://localhost:8080/contactsweb/mailList.xml";
+//					 String path = "http://localhost:8080/contactsweb/mailList.xml";
 					 SimpleDateFormat CREDENTIAL_FORMAT = new SimpleDateFormat("yyyyMMddHHmm");
 				     Calendar now = Calendar.getInstance();
 				     String minuteStr = CREDENTIAL_FORMAT.format(now.getTime());
